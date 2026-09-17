@@ -7,14 +7,16 @@ public class Chest : MonoBehaviour
 
     #region GameObject_variables
     [SerializeField]
-    private GameObject healthPotion;
+    public GameObject healthPotion;
     #endregion
 
     #region Chest_functions
     IEnumerator DestroyChest()
     {
         /* TODO Part 6.2: Instantiate the health potion at the chest's location and destroy the chest. */
+        Instantiate(healthPotion,transform.position, Quaternion.identity);
         yield return null;
+        Destroy(this.gameObject);
     }
 
     public void Open()
