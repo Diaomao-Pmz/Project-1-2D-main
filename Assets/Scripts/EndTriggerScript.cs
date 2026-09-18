@@ -13,4 +13,4 @@ public class EndTriggerScript : MonoBehaviour
             gm.GetComponent<GameManager>().WinGame();
         }
     }
-}
+}   

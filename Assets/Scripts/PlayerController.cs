@@ -195,6 +195,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         FindFirstObjectByType<AudioManager>().Play("PlayerDeath");
+        GameManager.Instance.LoseGame();
         Destroy(this.gameObject); 
     }
     #endregion
