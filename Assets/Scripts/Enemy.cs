@@ -6,6 +6,11 @@ public class Enemy : MonoBehaviour
 {
     #region Movement_variables
     public float moveSpeed;
+
+    //p2
+    public float idleMoveSpeed = 1f;
+    Vector2 idleDirection = Vector2.right;
+
     #endregion
 
     #region Targeting_variables
@@ -36,19 +41,27 @@ public class Enemy : MonoBehaviour
 
     private void Update() {
         /* TODO 2.1: Call Move() if player is !null */
-        if(player!= null)
+        if (player != null)
         {
-            Move();
+            AttackMove();
+        }
+        else
+        {
+            IdleMove();
         }
     }
     #endregion
 
     #region Movement_functions
-    private void Move()
+    private void AttackMove()
     { 
         /* TODO 2.1: Move the enemy towards the player */
         Vector2 dir = ((Vector2)player.position - EnemyRB.position).normalized;
         EnemyRB.linearVelocity = dir * moveSpeed;
+    }
+    private void IdleMove()
+    {
+        EnemyRB.linearVelocity = idleDirection * idleMoveSpeed;
     }
     #endregion
 
@@ -87,7 +100,19 @@ public class Enemy : MonoBehaviour
         {
             Explode();
         }
+        else if (other.gameObject.CompareTag("Wall"))
+        {
+            idleDirection = -idleDirection;
+        }
     }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            GetComponentInParent<Enemy>().player = null;
+        }
+    }
+
     #endregion
 
     #region Health_functions

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -131,6 +132,8 @@ public class PlayerController : MonoBehaviour
 
         /* DO NOT MODIFY ANYTHING BELOW THIS LINE UNLESS YOU REALLY KNOW WHAT YOU'RE DOING */
 
+        Vector2 Moveinput = new Vector2(x_input, y_input);
+
         if (x_input == 0 && y_input == 0)
         {
             anim.SetBool("Moving", false);
@@ -138,7 +141,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            anim.SetBool("Moving", true);
+            /*anim.SetBool("Moving", true);
             if (x_input > 0)
             {
                PlayerRB.linearVelocity = Vector2.right * moveSpeed;
@@ -158,7 +161,12 @@ public class PlayerController : MonoBehaviour
             { 
                PlayerRB.linearVelocity = Vector2.down * moveSpeed;
                currDirection = Vector2.down;
-            }
+            }*/
+
+            anim.SetBool("Moving", true);
+            Moveinput = Moveinput.normalized;
+            PlayerRB.linearVelocity = Moveinput * moveSpeed;
+            currDirection = Moveinput;
         }
 
         anim.SetFloat("DirX", currDirection.x);
@@ -173,7 +181,7 @@ public class PlayerController : MonoBehaviour
     {
         /* TODO 3.1: Adjust currHealth when the player takes damage
         IMPORTANT: What happens when the player's health reaches 0? */
-        currHealth -= value;
+            currHealth -= value;
         if (currHealth <= 0) 
             Die();
 

@@ -68,7 +68,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 4
+  m_Radius: 2
 --- !u!114 &3518936941558719574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   moveSpeed: 0.7
+  idleMoveSpeed: 1
   player: {fileID: 4401197151690973266, guid: 9c37f5bfc9950594f9c40719c972d436, type: 3}
   maxHealth: 4
   explosionDamage: 5
