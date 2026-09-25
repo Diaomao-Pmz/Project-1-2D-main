@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Targeting_variables
-    public Transform player;
+    public Transform player = null;
     #endregion
 
     #region Health_variables
@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     private void Awake() {
         EnemyRB = GetComponent<Rigidbody2D>();
         currHealth = maxHealth;
+        player = null;
     }
 
     private void Update() {
@@ -109,7 +110,7 @@ public class Enemy : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            GetComponentInParent<Enemy>().player = null;
+            player = null;
         }
     }
 
